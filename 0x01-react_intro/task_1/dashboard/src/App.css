@@ -1,0 +1,35 @@
+:root {
+  --primary-color: #e11d3f;
+  font: 18px Helvetica, Ariel, sans-serif;
+}
+
+.App {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  display: flex;
+  flex-direction: row;
+  color: var(--primary-color);
+  align-items: center;
+  border-bottom: thick solid var(--primary-color);
+}
+
+.App-body {
+  display: flex;
+  flex-direction: row;
+  min-height: 50vh;
+  margin: 3rem;
+}
+
+.App-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-top: thick solid var(--primary-color);
+  font-style: italic;
+  padding: 1rem;
+}
