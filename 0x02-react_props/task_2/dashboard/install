@@ -1,0 +1,15 @@
+#!/bin/bash
+npm install --save-dev webpack
+npm install --save-dev webpack-cli
+npm i --save-dev webpack-dev-server
+npm install --save-dev style-loader
+npm install --save-dev react react-dom
+npm install --save-dev jest
+npm install image-webpack-loader --save-dev
+npm install file-loader --save-dev
+npm install --save-dev babel-loader
+npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/preset-react @babel/polyfill
+npm i --save-dev enzyme
+npm install babel
+npm install loadash
+npm install jquery
