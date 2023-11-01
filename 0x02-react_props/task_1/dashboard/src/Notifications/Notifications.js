@@ -27,5 +27,5 @@ export default function Notification(props) {
                 <li dangerouslySetInnerHTML={markup}></li>
             </ul>
         </div>
-    )
+    );
 }

@@ -1,6 +1,10 @@
+:root {
+	--primary-color: #E11D3F;
+}
+
 .Notifications {
-    border: thick dotted #e038e0;
-    padding: 18px;
+	border: 1px solid var(--primary-color);
+	padding: 1rem;
 }
 
 [data-priority="default"] {
