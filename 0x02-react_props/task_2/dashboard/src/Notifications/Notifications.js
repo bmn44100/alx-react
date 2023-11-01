@@ -2,6 +2,7 @@ import React from "react";
 import './Notifications.css';
 import close_icon from '../assets/close-icon.png';
 import { getLatestNotification } from'../utils/utils.js';
+import NotificationItem from './NotificationItem';
 
 const markup = { __html: getLatestNotification() };
 
@@ -22,9 +23,9 @@ export default function Notification(props) {
             </button>
             <p>Here is the list of notifications</p>
             <ul>
-                <li data-priority="default">New course available</li>
-                <li data-priority="urgent">New resume available</li>
-                <li dangerouslySetInnerHTML={markup}></li>
+                <NotificationItem data-priority="urgent" value='New course available' />
+                <NotificationItem data-priority="urgent" value='New resume available' />
+                <NotificationItem type='urgent' html={{markup}} />
             </ul>
         </div>
     );
