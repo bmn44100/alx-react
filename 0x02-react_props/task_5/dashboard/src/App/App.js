@@ -10,7 +10,7 @@ import CourseList from '../CourseList/CourseList';
 const App = ({ isLoggedIn }) => {
     return (        
         <div className="App">
-          <Notifications />
+          <Notifications listNotifications={listNotifications}/>
           <Header />
 
           <div className="App-body">
