@@ -27,3 +27,17 @@ it('contains the Login component', () => {
 it('contains the Footer component', () => {
   expect(wrapper.contains(<Footer />)).toBe(true);
 })
+
+it('CourseList is not displayed when isLoggedIn is false', () => {
+  expect(wrapper.contains(<CourseList />)).toBe(false);
+})
+
+it('when isLoggedIn is true, the Login component is not displayed', () => {
+  const wrapper = shallow(<App isLoggedIn={true} />);
+  expect(wrapper.contains(<Login />)).toBe(false);
+})
+
+it('when isLoggedIn is true, the CourseList component is displayed', () => {  
+  const wrapper = shallow(<App isLoggedIn={true} />);
+  expect(wrapper.contains(<CourseList />)).toBe(true);
+})
