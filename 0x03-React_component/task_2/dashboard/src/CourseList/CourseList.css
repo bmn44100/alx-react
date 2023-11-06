@@ -1,0 +1,22 @@
+th[colSpan="2"] {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e0344b;
+    border: 1px solid;
+}
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid;
+    display: table;
+}
+
+
+tr th {
+    border: 1px solid;
+    padding-bottom: 1rem;
+    text-align: center;
+}
