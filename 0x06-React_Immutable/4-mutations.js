@@ -13,7 +13,4 @@ const map2 = map.withMutations((mapImm) => {
     mapImm.set(2, 'Benjamin').set(4, 'Oliver');
 });
 
-module.exports = {
-    map,
-    map2,
-};
+export { map, map2 };
