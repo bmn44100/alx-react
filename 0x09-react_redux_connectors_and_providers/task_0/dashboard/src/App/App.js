@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import Login from '../Login/Login';
@@ -9,6 +10,7 @@ import CourseList from '../CourseList/CourseList';
 import { getLatestNotification } from '../utils/utils';
 import BodySection from '../BodySection/BodySection';
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
+import { AppContext, defaultUser, listNotificationsInitialState } from './AppContext';
 
 class App extends Component {
 
@@ -181,5 +183,11 @@ class App extends Component {
     }
   });
 
+ export const mapStateToProps = (state) => {
+   return {
+     isLoggedIn: state.get('isUserLoggedIn')
+   }
+ }
+
  
- export default App;
+ export default connect(mapStateToProps)(App);
