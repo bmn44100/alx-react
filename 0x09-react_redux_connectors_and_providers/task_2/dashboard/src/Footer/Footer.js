@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
+import { connect } from 'react-redux';
 import AppContext from '../App/AppContext';
 import { getFullYear, getFooterCopy } from '../utils/utils';
 
-export default function Footer() {
+export function Footer() {
     const { user, logOut } = useContext(AppContext);
 
     if (user.isLoggedIn) {
@@ -22,3 +23,11 @@ export default function Footer() {
     }
     
   }
+
+  const mapStateToProps = (state) => {
+    return {
+      user: state.get('user'),
+    };
+  };
+
+  export default connect(mapStateToProps, null)(Footer);
