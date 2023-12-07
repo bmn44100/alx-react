@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import logo from '../assets/logo.jpg';
 import { StyleSheet, css } from 'aphrodite';
 import AppContext from '../App/AppContext';
+import { connect } from 'react-redux';
 
-export default function Header() {
+export function Header() {
     const { user, logOut } = useContext(AppContext);
     
     if (!user.isLoggedIn) {
@@ -53,3 +54,15 @@ const headerStyles = StyleSheet.create({
         width: '200px'
     }
 });
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.get('user'),
+    };
+};
+
+const mapDispatchToProps = {
+    logOut,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
