@@ -8,6 +8,13 @@ import NotificationItem from '../Notifications/NotificationItem';
 import { StyleSheetTestUtils } from 'aphrodite';
 import BodySection from '../BodySection/BodySection';
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
+import AppContext, { user, logOut } from './AppContext';
+import { fromJs } from 'immutable';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import uiReducer, { initialState } from '../reducers/uiReducer';
+
+const store = createStore(uiReducer, fromJs(initialState));
 
 window.alert = jest.fn();
 
@@ -101,3 +108,11 @@ it('markNotificationAsRead works as intended, set the state with a mock list of 
     {id: 3, type: 'urgent', html: { __html: getLatestNotification() }}
   ]);
 })
+
+it('verifies that the mapStateToProps functionreturns the right object', () => {
+  const state = {
+    isNotificationDrawerVisible: true
+  };
+  const result = mapStateToProps(state);
+  expect(result).toEqual({displayDrawer: true});
+});
