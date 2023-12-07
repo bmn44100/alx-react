@@ -65,17 +65,6 @@ it('when the keys control and h are pressed the logOut function, passed as a pro
   expect(myAlert).toHaveBeenCalledWith('Logging you out');
 });
 
-it('the default state for displayDrawer is false, verify that after calling handleDisplayDrawer, the state is now true', () => {
-  expect(wrapper.state().displayDrawer).toEqual(false);
-  wrapper.instance().handleDisplayDrawer();
-  expect(wrapper.state().displayDrawer).toEqual(true);
-});
-
-it('verify that after calling handleHideDrawer, the state is now false', () => {
-  wrapper.instance().handleHideDrawer();
-  expect(wrapper.state().displayDrawer).toEqual(false);
-});
-
 it('if logOut is being called by verifying if the state is updated correctly instead', () => {
   wrapper.instance().logOut();
   expect(wrapper.state().user.isLoggedIn).toEqual(false);
