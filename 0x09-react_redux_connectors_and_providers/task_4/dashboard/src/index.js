@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import App from './App/App';
-import uiReducer, { initialState } from './reducers/uiReducer';
+import rootReducer, { initialState } from './reducers/uiReducer';
 import { Map } from 'immutable';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
-const store = createStore(uiReducer, Map(initialState), composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(rootReducer, Map(initialState), composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <React.StrictMode>
