@@ -11,6 +11,7 @@ import { getLatestNotification } from '../utils/utils';
 import BodySection from '../BodySection/BodySection';
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import { AppContext, defaultUser, listNotificationsInitialState } from './AppContext';
+import { displayNotificationDrawer, hideNotificationDrawer } from '../actions/uiActionCreators';
 
 class App extends Component {
 
@@ -198,13 +199,17 @@ class App extends Component {
   App.defaultProps = {
     isLoggedIn: false,
     displayDrawer: false,
-    logOut: () => undefined
+    logOut: () => undefined,
+    displayNotificationDrawer: () => {},
+    hideNotificationDrawer: () => {}
   }
 
   App.propTypes = {
     isLoggedIn: propTypes.bool,
     displayDrawer: propTypes.bool,
-    logOut: propTypes.func
+    logOut: propTypes.func,
+    displayNotificationDrawer: propTypes.func,
+    hideNotificationDrawer: propTypes.func
   }
 
  
