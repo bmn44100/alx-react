@@ -26,13 +26,9 @@ const uiReducer = (state = Map(initialState), action) => {
                 user: action.payload
             })
         case LOGIN_FAILURE:
-            return state.merge({
-                isUserLoggedIn: false
-            })
+            return state.set('user', action.user);
         case LOGOUT:
-            return state.merge({
-                isUserLoggedIn: false
-            })
+            return state.set('isUserLoggedIn', false).set('user', null);
         default:
             return state
     }
