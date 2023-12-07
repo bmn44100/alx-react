@@ -100,7 +100,9 @@ it('markNotificationAsRead works as intended, set the state with a mock list of 
 
 it('verifies that the mapStateToProps functionreturns the right object', () => {
   const state = {
-    isNotificationDrawerVisible: true
+    ui: fromJs({
+      isNotificationDrawerVisible: true
+    })
   };
   const result = mapStateToProps(state);
   expect(result).toEqual({displayDrawer: true});
