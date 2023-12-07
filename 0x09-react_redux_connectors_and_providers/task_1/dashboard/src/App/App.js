@@ -60,14 +60,6 @@ class App extends Component {
       }
     }
 
-    handleDisplayDrawer = () => {
-      this.setState({displayDrawer: true})
-    }
-
-    handleHideDrawer = () => {
-      this.setState({displayDrawer: false})
-    }
-
     logIn = (email, password) => {
       this.setState({
         user: {
