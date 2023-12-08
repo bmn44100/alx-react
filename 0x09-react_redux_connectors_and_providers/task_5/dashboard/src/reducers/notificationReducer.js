@@ -7,9 +7,10 @@ import {
 import { Map } from 'immutable';
 import notificationsNormalizer from '../schema/notifications';
 
-export const initialState = {
+export const initialNotificationState = {
     notifications: [],
-    filter: ""
+    filter: "DEFAULT",
+    loading: false
 }
 
 const notificationReducer = (state = Map(initialState), action) => {
@@ -19,7 +20,7 @@ const notificationReducer = (state = Map(initialState), action) => {
             const normalizedData = notificationsNormalizer(action.data);
             console.log('normalizedData in FETCH switch', normalizedData);
 
-            Object.keys(normalizedData.notifications).forEach(key => {
+            Object.keys(normalizedData.notifications).map((key) => {
                 normalizedData.notifications[key].isRead = false;
             });
         case MARK_AS_READ:
@@ -30,9 +31,14 @@ const notificationReducer = (state = Map(initialState), action) => {
             console.log('state in SET_TYPE_FILTER switch', state);
             console.log('action in SET_TYPE_FILTER switch', action);
             return state.set('filter', action.filter);
+        
+        case 'SET_LOADING_STATE':
+            return state.set('loading', action.loading);
+        
         default:
-            return state;
-    }
-}
+            break;
+        }
+        return state;
+};
 
 export default notificationReducer;
