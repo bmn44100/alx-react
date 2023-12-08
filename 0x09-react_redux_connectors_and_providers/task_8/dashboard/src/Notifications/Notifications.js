@@ -5,6 +5,8 @@ import { getLatestNotification } from'../utils/utils.js';
 import NotificationItem from './NotificationItem';
 import PropTypes from 'prop-types';
 import NotificationItemShape from './NotificationItemShape';
+import { getUnreadNotificationsByType } from "../selectors/notificationSelector.js";
+import { fetchNotifications, markAsRead, markNotificationAsRead } from "../actions/notificationActionCreators.js";
 
 const markup = { __html: getLatestNotification() };
 
@@ -25,7 +27,8 @@ export class Notification extends Component {
                 displayDrawer,
                 handleDisplyDrawer,
                 hideDisplayDrawer,
-                markNotificationAsRead
+                markNotificationAsRead,
+                setNotificationFilter
         } = this.props;
         
         return(
@@ -138,7 +141,9 @@ Notification.defaultProps = {
     listNotifications: [],
     handleDisplayDrawer: () => {},
     handleHideDrawer: () => {},
-    markNotificationAsRead: () => {}
+    markNotificationAsRead: () => {},
+    fetchNotifications: () => {},
+    setNotificationFilter: () => {},
 }
 
 Notification.propTypes = {
@@ -146,17 +151,22 @@ Notification.propTypes = {
     listNotifications: propTypes.arrayOf(NotificationItemShape),
     handleDisplayDrawer: PropTypes.func,
     handleHideDrawer: PropTypes.func,
-    markNotificationAsRead: PropTypes.func
+    markNotificationAsRead: PropTypes.func,
+    setNotificationFilter: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {
+
+    const unreadNotificationsByType = getUnreadNotificationsByType(state);
     return {
-        listNotifications: state.notifications.get('messages'),
+        listNotifications: unreadNotificationsByType,
     };
 };
 
 const mapDispatchToProps = {
-    fetchNotifications
+    fetchNotifications,
+    markNotificationAsRead: markAsRead,
+    setNotificationFilter
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notifications); 
