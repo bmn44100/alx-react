@@ -31,3 +31,19 @@ it('renders correctly if you pass a list of courses', () => {
     expect(wrapper.find('CourseListRow').get(7).props.textFirstCell).toEqual('Webpack');
     expect(wrapper.find('CourseListRow').get(7).props.textSecondCell).toEqual(20);
 });
+
+it('verifies that the action is dispatched when the component is mounted', () => {
+    const fetchCourses = jest.fn(() => {});
+    const wrapper = shallow(<CourseList fetchCourses={fetchCourses} />);
+    expect(fetchCourses).toHaveBeenCalled();
+});
+
+it('verifies that the two actions are correctly dispatched when the onChangeRow function is called', () => {
+    const selectCourse = jest.fn(() => {});
+    const unSelectCourse = jest.fn(() => {});
+    const wrapper = shallow(<CourseList selectCourse={selectCourse} unSelectCourse={unSelectCourse} />);
+    wrapper.instance().onChangeRow(true, 1);
+    expect(selectCourse).toHaveBeenCalledWith(1);
+    wrapper.instance().onChangeRow(false, 1);
+    expect(unSelectCourse).toHaveBeenCalledWith(1);
+});
