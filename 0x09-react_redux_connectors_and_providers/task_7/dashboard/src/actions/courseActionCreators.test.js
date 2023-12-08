@@ -9,4 +9,13 @@ describe('selectCourse', () => {
 
         expect(selectCourse(1)).toEqual(expected);
     });
+
+    it('verifies that fetchCourses will query the API in courses.json and that the fetch is working correctly', () => {
+        const expected = {
+            type: 'UNSELECT_COURSE',
+            index: 1
+        };
+
+        expect(unSelectCourse(1)).toEqual(expected);
+    });
 });

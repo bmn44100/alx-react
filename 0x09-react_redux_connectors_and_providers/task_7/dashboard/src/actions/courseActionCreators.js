@@ -1,4 +1,5 @@
-import { SELECT_COURSE, UNSELECT_COURSE } from "./courseActionTypes";
+import { SELECT_COURSE, UNSELECT_COURSE, FETCH_COURSE_SUCCESS } from "./courseActionTypes";
+import 'node-fetch';
 
 export const selectCourse = (courseId) => (dispatch) => {
     dispatch({
@@ -14,3 +15,18 @@ export const unselectCourse = (courseId) => (dispatch) => {
     });
 }
 
+export const setCourses = (data) => {
+    return {
+        type: FETCH_COURSE_SUCCESS,
+        data
+    };
+};
+
+export const fetchCourses = () => {
+    return (dispatch) => {
+        fetch('../dist/courses.json')
+            .then((response) => response.json())
+            .then((data) => dispatch(setCourses(data)));
+    
+    };
+};
