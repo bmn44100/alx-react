@@ -116,3 +116,38 @@ it('Refactor the tests to match the new container', () => {
     expect(wrapper.find('NotificationItem').exists()).toEqual(true);
     expect(wrapper.find('Notifications').exists()).toEqual(true);
 })
+
+it('verifies that the function fetchNotifications is called when the component is mounted', () => {
+    const fetchNotifications = jest.fn();
+    const wrapper = shallow(<Notification fetchNotifications={fetchNotifications} />);
+    expect(fetchNotifications).toHaveBeenCalled();
+    fetchNotifications.mockRestore();
+})
+
+it('verifies that setLoadingState, setNotifications, and fetchNotifications each create the right actions', () => {
+    const wrapper = shallow(<Notification />);
+    const instance = wrapper.instance();
+    const spySetLoadingState = jest.spyOn(instance, 'setLoadingState');
+    const spySetNotifications = jest.spyOn(instance, 'setNotifications');
+    const spyFetchNotifications = jest.spyOn(instance, 'fetchNotifications');
+    instance.componentDidMount();
+    expect(spySetLoadingState).toHaveBeenCalled();
+    expect(spySetNotifications).toHaveBeenCalled();
+    expect(spyFetchNotifications).toHaveBeenCalled();
+    spySetLoadingState.mockRestore();
+    spySetNotifications.mockRestore();
+    spyFetchNotifications.mockRestore();
+})
+
+it('verifies that SET_LOADING_STATE updates the reducer correctly', () => {
+    const wrapper = shallow(<Notification />);
+    const instance = wrapper.instance();
+    const action = {
+        type: 'SET_LOADING_STATE',
+        payload: {
+            loading: true,
+        }
+    };
+    instance.reducer({}, action);
+    expect(instance.state.loading).toEqual(true);
+})
