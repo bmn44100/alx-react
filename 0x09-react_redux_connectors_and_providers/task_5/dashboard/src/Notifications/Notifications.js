@@ -8,9 +8,16 @@ import NotificationItemShape from './NotificationItemShape';
 
 const markup = { __html: getLatestNotification() };
 
-class Notification extends Component {
+export class Notification extends Component {
     
-    
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.fetchNotifications();
+    }
+
     render () {
         
         const { 
@@ -53,7 +60,8 @@ class Notification extends Component {
                                 </li>
                             )}
 
-                            {listNotifications.map(notification => (
+                            {listNotifications &&
+                              Object.values(listNotifications).map((notification) => (
                                 <NotificationItem id={notification.id} html={notification.html} markAsRead={this.markAsRead} type={notification.type} value={notification.value} />
                             ))}
                         </ul>
@@ -141,4 +149,14 @@ Notification.propTypes = {
     markNotificationAsRead: PropTypes.func
 }
 
-export default Notification;
+const mapStateToProps = (state) => {
+    return {
+        listNotifications: state.notifications.get('messages'),
+    };
+};
+
+const mapDispatchToProps = {
+    fetchNotifications
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications); 
